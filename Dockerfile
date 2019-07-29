@@ -13,3 +13,6 @@ RUN yarn build
 FROM nginx:alpine
 
 COPY --from=build /app/build /usr/share/nginx/html
+
+# work around for knative/serving#3890
+CMD ["mkdir", "-p", "/var/log/nginx", "&&", "nginx", "-g", "daemon off;"]
