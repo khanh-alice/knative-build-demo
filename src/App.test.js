@@ -6,12 +6,12 @@ it("renders without crashing", () => {
   shallow(<App />);
 });
 
-it("should show a lemonade", () => {
+it("should show a lemonade image", () => {
   const app = shallow(<App />);
   expect(app.find("img").prop("src")).toEqual("lemonade.jpg");
 });
 
-xit("should show a cocktail", () => {
+xit("should show a cocktail image", () => {
   const app = shallow(<App />);
   expect(app.find("img").prop("src")).toEqual("cocktail.jpg");
 });
