@@ -10,11 +10,6 @@ COPY . .
 RUN yarn build
 
 # web server
-FROM nginx:alpine
+FROM httpd:alpine
 
-COPY --from=build /app/build /usr/share/nginx/html
-
-# work around for knative/serving#3890
-RUN mkdir -p /var/log/nginx
-
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=build /app/build /usr/local/apache2/htdocs
