@@ -14,7 +14,7 @@ RUN yarn build
 # web server
 FROM nginx:alpine
 
-COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/build /usr/share/nginx/html
 
-EXPOSE 8080
+# work around for https://github.com/knative/serving/issues/3809
+CMD ["sh", "-c", "mkdir -p /var/log/nginx && nginx -g daemon off;"]
