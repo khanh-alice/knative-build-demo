@@ -17,4 +17,4 @@ FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 
 # work around for https://github.com/knative/serving/issues/3809
-CMD ["sh", "-c", "mkdir -p /var/log/nginx && nginx -g daemon off;"]
+CMD ["sh", "-c", "mkdir -p /var/log/nginx && nginx -g \"daemon off;\""]
