@@ -1,0 +1,15 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: build-template-demo
+spec:
+  serviceAccountName: build-bot
+  source:
+    git:
+      url: https://github.com/khanh-alice/knative-build-demo.git
+      revision: master
+  template:
+    name: react-build-template
+    arguments:
+    - name: IMAGE
+      value: docker.io/khanhalice/knative-demo:1.0-build-template

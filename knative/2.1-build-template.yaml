@@ -1,0 +1,31 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: BuildTemplate
+metadata:
+  name: react-build-template
+spec:
+  parameters:
+  - name: IMAGE
+    description: The name of the image to push
+  - name: DOCKERFILE
+    description: Path to the Dockerfile to build.
+    default: /workspace/Dockerfile
+
+  steps:
+  - name: install
+    image: gcr.io/cloud-builders/yarn
+    args:
+    - install
+
+  - name: test
+    image: gcr.io/cloud-builders/yarn
+    args:
+    - test
+    env:
+    - name: CI
+      value: "true"
+
+  - name: build-and-push
+    image: gcr.io/kaniko-project/executor
+    args:
+    - --dockerfile=${DOCKERFILE}
+    - --destination=${IMAGE}
