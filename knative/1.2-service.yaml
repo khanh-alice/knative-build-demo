@@ -1,10 +1,12 @@
 apiVersion: serving.knative.dev/v1beta1
 kind: Service
 metadata:
-  name: knative-build-demo
+  name: knative-demo
   namespace: default
 spec:
   template:
     spec:
       containers:
-        - image: docker.io/khanhalice/knative-build-demo:build
+        - image: docker.io/khanhalice/knative-demo:1.0
+          ports:
+            - containerPort: 80
