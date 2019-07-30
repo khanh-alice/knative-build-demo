@@ -12,6 +12,9 @@ COPY .babelrc ./
 RUN yarn build
 
 # web server
-FROM httpd:alpine
+FROM nginx:alpine
 
-COPY --from=build /app/build /usr/local/apache2/htdocs
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 8080
