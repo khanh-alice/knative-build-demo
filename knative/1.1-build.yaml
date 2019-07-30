@@ -1,16 +1,30 @@
 apiVersion: build.knative.dev/v1alpha1
 kind: Build
 metadata:
-  name: build-knative-demo
+  name: build-demo
 spec:
   serviceAccountName: build-bot
   source:
     git:
       url: https://github.com/khanh-alice/knative-build-demo.git
       revision: master
+
   steps:
-  - name: build-and-push
-    image: "gcr.io/kaniko-project/executor"
+  - name: install
+    image: gcr.io/cloud-builders/yarn
     args:
-    - "--dockerfile=/Dockerfile"
-    - "--destination=docker.io/khanhalice/knative-demo:1.0"
+    - install
+
+  - name: test
+    image: gcr.io/cloud-builders/yarn
+    args:
+    - test
+    env:
+    - name: CI
+      value: "true"
+
+  - name: build-and-push
+    image: gcr.io/kaniko-project/executor
+    args:
+    - --dockerfile=Dockerfile
+    - --destination=docker.io/khanhalice/knative-demo:1.0
