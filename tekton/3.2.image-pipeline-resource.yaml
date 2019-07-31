@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: tekton-demo-image
+spec:
+  type: image
+  params:
+    - name: url
+      value: docker.io/khanhalice/knative-demo:1.0-tekton

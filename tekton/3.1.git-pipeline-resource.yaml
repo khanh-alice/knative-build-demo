@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: tekton-demo-git
+spec:
+  type: git
+  params:
+    - name: url
+      value: https://github.com/khanh-alice/knative-build-demo.git
+    - name: revision
+      value: master

@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: demo-task-run
+spec:
+  serviceAccount: build-bot
+  taskRef:
+    name: demo-task
+
+  inputs:
+    resources:
+      - name: source
+        resourceRef:
+          name: tekton-demo-git
+    params:
+      - name: pathToDockerFile
+        value: Dockerfile
+
+  outputs:
+    resources:
+      - name: builtImage
+        resourceRef:
+          name: tekton-demo-image
