@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: deploy-task
+spec:
+  inputs:
+    resources:
+      - name: source
+        type: git
+      - name: image
+        type: image
+    params:
+      - name: path
+        type: string
+        description: Path to the manifest to apply
+  steps:
+    - name: kubectl-apply
+      image: gcr.io/cloud-builders/kubectl
+      args:
+        - apply
+        - -f
+        - ${inputs.params.path}
+      env:
+        - name: CLOUDSDK_COMPUTE_ZONE
+          value: us-central1-a
+        - name: CLOUDSDK_CONTAINER_CLUSTER
+          value: knative

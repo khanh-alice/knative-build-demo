@@ -1,0 +1,35 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: demo-pipeline
+spec:
+  resources:
+    - name: source
+      type: git
+    - name: image
+      type: image
+  tasks:
+    - name: build-myapp
+      taskRef:
+        name: build-task
+      resources:
+        inputs:
+          - name: source
+            resource: source
+        outputs:
+          - name: builtImage
+            resource: image
+    - name: deploy-myapp
+      taskRef:
+        name: deploy-task
+      resources:
+        inputs:
+          - name: source
+            resource: source
+          - name: image
+            resource: image
+            from:
+              - build-myapp
+      params:
+        - name: path
+          value: /workspace/source/knative/1.2-service.yaml
