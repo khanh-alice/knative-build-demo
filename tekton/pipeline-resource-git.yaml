@@ -6,6 +6,6 @@ spec:
   type: git
   params:
     - name: url
-      value: https://github.com/khanh-alice/knative-build-demo.git
+      value: https://github.com/khanh-alice/tekton-demo.git
     - name: revision
       value: master
