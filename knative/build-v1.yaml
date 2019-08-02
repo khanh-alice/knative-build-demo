@@ -1,7 +1,7 @@
 apiVersion: build.knative.dev/v1alpha1
 kind: Build
 metadata:
-  name: build-demo
+  name: build-v1
 spec:
   serviceAccountName: build-bot
   source:
