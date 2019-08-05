@@ -1,10 +1,11 @@
 import React from "react";
-import "./App.css";
 import requireContext from "require-context.macro";
+
+import "./App.css";
 
 const images = requireContext("./images");
 
-function App() {
+const App = () => {
   const drink = process.env.REACT_APP_DRINK;
 
   return (
@@ -15,7 +16,7 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export const Message = ({ drink }) => (
   <p>
@@ -34,8 +35,11 @@ export const Image = ({ drink }) => {
   return null;
 };
 
-function validDrink(drink) {
-  return ["lemonade", "cocktail"].indexOf(drink) >= 0;
+export const drinkTypes = {
+  LEMONADE: "lemonade",
+  COCKTAIL: "cocktail"
 }
+
+const validDrink = drink => Object.values(drinkTypes).indexOf(drink) >= 0;
 
 export default App;
