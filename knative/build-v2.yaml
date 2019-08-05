@@ -12,4 +12,6 @@ spec:
     name: react-build-template
     arguments:
     - name: IMAGE
-      value: docker.io/khanhalice/knative-demo:1.0-build-template
+      value: docker.io/khanhalice/tekton-demo:1.0-build-template
+    - name: REACT_APP_DRINK
+      value: lemonade

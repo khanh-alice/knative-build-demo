@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1beta1
 kind: Service
 metadata:
-  name: my-app-v1
+  name: my-app
   namespace: default
 spec:
   template:
@@ -9,6 +9,6 @@ spec:
       name: my-app-v1
     spec:
       containers:
-        - image: docker.io/khanhalice/my-app:v1
+        - image: docker.io/khanhalice/tekton-demo:1.0
           ports:
             - containerPort: 80

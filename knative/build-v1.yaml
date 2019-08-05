@@ -11,12 +11,12 @@ spec:
 
   steps:
   - name: install
-    image: gcr.io/cloud-builders/yarn
+    image: gcr.io/cloud-builders/yarn:node-10.10.0
     args:
     - install
 
   - name: test
-    image: gcr.io/cloud-builders/yarn
+    image: gcr.io/cloud-builders/yarn:node-10.10.0
     args:
     - test
     env:
@@ -24,7 +24,9 @@ spec:
       value: "true"
 
   - name: build-and-push
-    image: gcr.io/kaniko-project/executor
+    image: gcr.io/kaniko-project/executor:v0.10.0
     args:
-    - --dockerfile=Dockerfile
-    - --destination=docker.io/khanhalice/knative-demo:1.0
+    - --build-arg
+    - REACT_APP_DRINK=lemonade
+    - --destination
+    - docker.io/khanhalice/tekton-demo:1.0
