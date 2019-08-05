@@ -12,10 +12,3 @@ spec:
         - image: docker.io/khanhalice/tekton-demo:1.0-tekton
           ports:
             - containerPort: 80
-  traffic:
-    - tag: current
-      revisionName: my-app-v1
-      percent: 80
-    - tag: candidate
-      revisionName: my-app-v2
-      percent: 20
