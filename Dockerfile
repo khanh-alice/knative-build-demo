@@ -1,6 +1,9 @@
 # build
 FROM node:alpine AS build
 
+ARG REACT_APP_DRINK
+ENV REACT_APP_DRINK $REACT_APP_DRINK
+
 WORKDIR /app
 
 COPY package.json yarn.lock ./
