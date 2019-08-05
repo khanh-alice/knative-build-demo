@@ -10,7 +10,7 @@ spec:
       - name: image
         type: image
     params:
-      - name: path
+      - name: pathToYamlFile
         type: string
         description: Path to the manifest to apply
   steps:
@@ -19,7 +19,7 @@ spec:
       args:
         - apply
         - -f
-        - ${inputs.params.path}
+        - ${inputs.params.pathToYamlFile}
       env:
         - name: CLOUDSDK_COMPUTE_ZONE
           value: us-central1-a

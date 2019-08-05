@@ -8,8 +8,27 @@ spec:
       type: git
     - name: image
       type: image
+
+  params:
+    - name: REACT_APP_DRINK
+      type: string
+      description: "Please choose a drink: lemonade or cocktail"
+    - name: pathToYamlFile
+      type: string
+      description: Path to the manifest to apply
+
   tasks:
-    - name: build-myapp
+    - name: test-my-app
+      taskRef:
+        name: test-task
+      resources:
+        inputs:
+          - name: source
+            resource: source
+
+    - name: build-my-app
+      runAfter:
+        - test-my-app
       taskRef:
         name: build-task
       resources:
@@ -19,7 +38,11 @@ spec:
         outputs:
           - name: builtImage
             resource: image
-    - name: deploy-myapp
+      params:
+        - name: REACT_APP_DRINK
+          value: ${params.REACT_APP_DRINK}
+
+    - name: deploy-my-app
       taskRef:
         name: deploy-task
       resources:
@@ -29,7 +52,7 @@ spec:
           - name: image
             resource: image
             from:
-              - build-myapp
+              - build-my-app
       params:
-        - name: path
-          value: /workspace/source/knative/1.2-service.yaml
+        - name: pathToYamlFile
+          value: ${params.pathToYamlFile}

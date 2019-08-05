@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: test-task
+spec:
+  inputs:
+    resources:
+      - name: source
+        type: git
+
+  steps:
+    - name: install
+      image: gcr.io/cloud-builders/yarn:node-10.10.0
+      args:
+        - install
+      workingDir: ${inputs.resources.source.path}
+
+    - name: test
+      image: gcr.io/cloud-builders/yarn:node-10.10.0
+      args:
+        - test
+      env:
+        - name: CI
+          value: "true"
+      workingDir: ${inputs.resources.source.path}

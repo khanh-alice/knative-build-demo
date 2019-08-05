@@ -12,6 +12,9 @@ spec:
         type: string
         description: Path to the Dockerfile to build
         default: ${inputs.resources.source.path}/Dockerfile
+      - name: REACT_APP_DRINK
+        type: string
+        description: "Please choose a drink: lemonade or cocktail"
 
   outputs:
     resources:
@@ -19,24 +22,14 @@ spec:
         type: image
 
   steps:
-    - name: install
-      image: gcr.io/cloud-builders/yarn
-      args:
-        - install
-      workingDir: ${inputs.resources.source.path}
-
-    - name: test
-      image: gcr.io/cloud-builders/yarn
-      args:
-        - test
-      env:
-        - name: CI
-          value: "true"
-      workingDir: ${inputs.resources.source.path}
-
     - name: build-and-push
-      image: gcr.io/kaniko-project/executor
+      image: gcr.io/kaniko-project/executor:v0.10.0
       args:
-        - --dockerfile=${inputs.params.pathToDockerFile}
-        - --context=${inputs.resources.source.path}
-        - --destination=${outputs.resources.builtImage.url}
+        - --build-arg
+        - REACT_APP_DRINK=${inputs.params.REACT_APP_DRINK}
+        - --dockerfile
+        - ${inputs.params.pathToDockerFile}
+        - --context
+        - ${inputs.resources.source.path}
+        - --destination
+        - ${outputs.resources.builtImage.url}

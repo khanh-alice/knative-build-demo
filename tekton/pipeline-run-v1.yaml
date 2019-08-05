@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineRun
 metadata:
-  name: demo-pipeline-run-2
+  name: pipeline-run-v1
 spec:
   serviceAccount: build-bot
   pipelineRef:
@@ -13,3 +13,8 @@ spec:
     - name: image
       resourceRef:
         name: tekton-demo-image
+  params:
+    - name: REACT_APP_DRINK
+      value: cocktail
+    - name: pathToYamlFile
+      value: /workspace/source/knative/service-v2.yaml
