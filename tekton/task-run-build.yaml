@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: task-run-build
+spec:
+  serviceAccount: build-bot
+  taskRef:
+    name: build-task
+  inputs:
+    resources:
+      - name: source
+        resourceRef:
+          name: tekton-demo-git
+    params:
+      - name: REACT_APP_DRINK
+        value: cocktail
+  outputs:
+    resources:
+      - name: builtImage
+        resourceRef:
+          name: tekton-demo-image

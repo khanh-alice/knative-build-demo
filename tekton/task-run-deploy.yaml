@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: task-run-deploy
+spec:
+  serviceAccount: build-bot
+  taskRef:
+    name: deploy-task
+  inputs:
+    resources:
+      - name: source
+        resourceRef:
+          name: tekton-demo-git
+      - name: image
+        resourceRef:
+          name: tekton-demo-image
+    params:
+      - name: pathToYamlFile
+        value: /workspace/source/knative/service-v2.yaml

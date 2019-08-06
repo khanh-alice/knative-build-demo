@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: TaskRun
 metadata:
-  name: task-run-v1
+  name: task-run-test
 spec:
   serviceAccount: build-bot
   taskRef:
