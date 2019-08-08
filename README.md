@@ -1,12 +1,13 @@
 # Tekton Pipelines Demo
 
 ## Introduction
-- This repoitory contains a simple React application and yaml files that demonstrates both Knative Build and Tekton Pipelines (from testing, building and deploying an application)
-- The React application simply display a message, an image and these will change base on an environment variables `REACT_APP_DRINK` (either `lemonade` or `cocktail`), we will use this to make 2 versions of our application.
+
+- This repository contains a simple React application and yaml files that demonstrates both Knative Build and Tekton Pipelines (from testing, building and deploying an application)
+- The React application simply display a message, an image and these will change based on an environment variables `REACT_APP_DRINK` (either `lemonade` or `cocktail`), we will use this to make 2 versions of our application.
 
 ## Prerequisite
 
-- Setup a Kubernetes cluster (make sure node pool has access scope to Cloud Platform in case of GKE).
+- Set up a Kubernetes cluster (make sure node pool has access scope to Cloud Platform in case of GKE).
 - Install [Knative](https://knative.dev/docs/install/).
 - Install [Tekton Pipelines](https://github.com/tektoncd/pipeline/blob/master/docs/install.md).
 - Find and replace all `https://github.com/khanh-alice/tekton-demo.git` with yours git repository if needed.
@@ -206,7 +207,7 @@ demo-pipeline   1m
 kubectl apply -f tekton/pipeline-run-v1.yaml
 ```
 
-- Verify that a PipelineRun, 3 TaskRun and 3 arcordingly Pods are created.
+- Verify that a PipelineRun, 3 TaskRun and 3 accordingly Pods are created.
 
 ```bash
 NAME                                                  READY   STATUS              RESTARTS   AGE
