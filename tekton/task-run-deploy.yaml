@@ -16,4 +16,4 @@ spec:
           name: tekton-demo-image
     params:
       - name: pathToYamlFile
-        value: /workspace/source/knative/service-v2.yaml
+        value: /workspace/source/knative/service-v1.yaml
