@@ -183,6 +183,7 @@ kubectl logs --all-containers=true --follow pod/task-run-test-pod-0adeaa
 ```
 
 - You can run task for `build-task` & `deploy-task` with their corresponding TaskRun yaml file `task-run-build.yaml` & `task-run-deploy.yaml`.
+  You will need to update your Kubernetes cluster's zone & name in `task-run-deploy.yaml`.
 
 ### Pipeline & PipelineRun
 
@@ -202,6 +203,7 @@ demo-pipeline   1m
 ```
 
 - Run this Pipeline with a PipelineRun.
+  You will need to update your Kubernetes cluster's zone & name in `pipeline-run-v1.yaml`.
 
 ```bash
 kubectl apply -f tekton/pipeline-run-v1.yaml

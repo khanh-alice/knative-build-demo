@@ -16,6 +16,12 @@ spec:
     - name: pathToYamlFile
       type: string
       description: Path to the manifest to apply
+    - name: clusterZone
+      type: string
+      description: Kurbernetes cluster's zone
+    - name: clusterName
+      type: string
+      description: Kurbernetes cluster's name
 
   tasks:
     - name: test-my-app
@@ -56,3 +62,7 @@ spec:
       params:
         - name: pathToYamlFile
           value: ${params.pathToYamlFile}
+        - name: clusterZone
+          value: ${params.clusterZone}
+        - name: clusterName
+          value: ${params.clusterName}

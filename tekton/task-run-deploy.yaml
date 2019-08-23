@@ -17,3 +17,7 @@ spec:
     params:
       - name: pathToYamlFile
         value: /workspace/source/knative/service-v1.yaml
+      - name: clusterZone
+        value: us-central1-a
+      - name: clusterName
+        value: knative

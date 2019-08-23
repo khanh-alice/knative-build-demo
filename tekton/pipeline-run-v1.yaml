@@ -18,3 +18,7 @@ spec:
       value: cocktail
     - name: pathToYamlFile
       value: /workspace/source/knative/service-v2.yaml
+    - name: clusterZone
+      value: us-central1-a
+    - name: clusterName
+      value: knative
